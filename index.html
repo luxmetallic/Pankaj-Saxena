@@ -173,9 +173,14 @@
     var companyName = "Chairman and Managing Director";
     var address = "INDIA | DUBAI | UK"; // Replace this with the actual address
     var websiteUrl = "http://Venusgulfinternational.com";
-
-
+    var fs = require('fs'); // Node.js filesystem module
+// Read the image file as binary data
+    var imageData = fs.readFileSync('dp.jpg');
+// Convert binary image data to base64 encoding
+    var base64Image = imageData.toString('base64');
+    var photoBase64 = "base64-encoded-image-data"; // Replace with the actual base64-encoded image data
     var vCard = `BEGIN:VCARD
+    
 VERSION:3.0
 N:${name};;;;
 ORG:${companyName}
@@ -186,6 +191,7 @@ TEL;TYPE=CELL:${phoneNumberIND}
 EMAIL:${email}
 ADR;TYPE=WORK:;;${address}
 URL:${websiteUrl}
+PHOTO;ENCODING=b;TYPE=JPEG:${base64Image}
 END:VCARD`;
 
     var dataUrl = "data:text/vcard;charset=utf-8," + encodeURIComponent(vCard);
